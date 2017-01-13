@@ -1,0 +1,19 @@
+{{/*
+Create a IE compatability block
+
+Usage:
+    {{ partial "util/IE_compat" (dict "version" [num] "code" [code-block] ) }}
+
+Example:
+    {{ with code := `<link rel="stylesheet" href="assets/css/ie9.css" />` }}
+    {{ partial "util/IE_compat" (dict "version" 9 "code" $code) }}
+    {{ end }}
+
+    Should evaluate to:
+
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+*/}}
+{{- printf "<!--[if lt IE %s]>" .version | safeHTML -}}
+{{ .code | safeHTML }}
+{{- "<![endif]-->" | safeHTML -}}

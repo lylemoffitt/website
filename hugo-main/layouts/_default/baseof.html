@@ -1,0 +1,42 @@
+{{/* 
+This is the base of all block-template pages. 
+
+Any template that 'define's one of the 'block's here will be expanded
+into this defintion, if no others are matched first. 
+*/}}
+{{ block "page-doctype-tag" . }}
+<!DOCTYPE html> 
+{{ end }} 
+{{ block "page-html-tag-open" . }}
+<html>{{/* Default html tag with no attributes */}}
+{{ end }}
+
+    {{ block "page-head-tag-open" . }}
+    <head>
+    {{ end }}
+
+        {{ block "page-head-content" . }}
+        <meta charset="utf-8">
+        <title>{{ block "title" . }}
+            <!-- Blocks may include default content. -->
+            {{ .Site.Title }} {{ end }}
+        </title>
+        {{ end }}
+
+    {{ block "page-head-tag-close" . }}
+    </head>
+    {{ end }}
+
+    {{ block "page-body-tag-open" . }}
+    <body>
+    {{ end }}
+
+        {{ block "page-body-content" . }}{{ end }}
+
+    {{ block "page-body-tag-close" . }}
+    </body>
+    {{ end }}
+
+{{ block "page-html-tag-close" . }}
+</html>
+{{ end }}
